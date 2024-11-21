@@ -1,5 +1,8 @@
+const ReactRefreshPlugin = require('@rspack/plugin-react-refresh');
 const rspack = require("@rspack/core");
 const path = require("path");
+
+const isDev = process.env.NODE_ENV !== "production";
 
 /** @type {import('@rspack/cli').Configuration} */
 const config = {
@@ -50,6 +53,7 @@ const config = {
             options: {
               sourceMap: false,
               jsc: {
+                baseUrl: __dirname,
                 target: "es2017",
                 parser: {
                   syntax: "typescript",
@@ -57,12 +61,16 @@ const config = {
                   decorators: false,
                   dynamicImport: true,
                 },
+                paths: {
+                  "@/*": ["src/*"],
+                },
                 transform: {
                   react: {
                     pragma: "React.createElement",
                     pragmaFrag: "React.Fragment",
                     throwIfNamespace: true,
-                    development: false,
+                    development: isDev,
+                    refresh: isDev,
                     useBuiltins: false,
                     runtime: "automatic",
                     importSource: "nativewind",
@@ -86,13 +94,12 @@ const config = {
         use: [
           rspack.CssExtractRspackPlugin.loader,
           "css-loader",
-          // "@rspack/postcss-loader",
           {
             loader: "@rspack/postcss-loader",
             options: {
               postcssOptions: {
                 plugins: [
-                  require("tailwindcss"), // Example plugin
+                  require("tailwindcss"),
                 ],
               },
             },
@@ -106,6 +113,10 @@ const config = {
     new rspack.HtmlRspackPlugin({
       template: "./index.html",
     }),
+    // this doesn't seem to work as well
+    ...(isDev ? [new ReactRefreshPlugin({
+      overlay: true,
+    })] : []),
   ],
 };
 

@@ -371,7 +371,6 @@ const Button = React.forwardRef<
     { className, variant = "solid", size = "md", action = "primary", ...props },
     ref
   ) => {
-    console.log(variant, size, buttonStyle({ variant, size, action, class: className }))
     return (
       <UIButton
         ref={ref}
