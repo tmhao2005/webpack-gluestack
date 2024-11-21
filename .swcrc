@@ -1,0 +1,35 @@
+{
+  "jsc": {
+    "target": "es2017",
+    "parser": {
+      "syntax": "typescript",
+      "tsx": true,
+      "decorators": false,
+      "dynamicImport": true
+    },
+    "transform": {
+      "react": {
+        "pragma": "React.createElement",
+        "pragmaFrag": "React.Fragment",
+        "throwIfNamespace": true,
+        "development": false,
+        "useBuiltins": false,
+        "runtime": "automatic",
+        // this is required to set otherwise no css will be added
+        "importSource": "nativewind"
+      },
+      "hidden": {
+        "jest": true
+      }
+    }
+  },
+  // this prevents dynamic import which is dedicated for code splitting with webpack
+  // but it still works well with target node so disable for now
+  "module": {
+    "type": "commonjs",
+    "strict": false,
+    "strictMode": true,
+    "lazy": false,
+    "noInterop": false
+  }
+}
