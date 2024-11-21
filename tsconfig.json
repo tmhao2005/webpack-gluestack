@@ -1,29 +1,36 @@
 {
-    "compilerOptions": {
-      "baseUrl": ".",
-      "lib": ["dom", "esnext"],
-      "skipLibCheck": true,
-      "target": "es5",
-      "strict": true,
-
-      /** TypeScript checks */
-      "noUnusedLocals": true,
-      "noUnusedParameters": true,
-
-      /** JavaScript/CommonJS integration */
-      "allowJs": false,
-      "allowSyntheticDefaultImports": true,
-      "esModuleInterop": true,
-      "noImplicitThis": false,
-
-      /** webpack integration */
-      "paths": {
-        "@/*": ["src/*"]
-      },
-      "module": "ESNext",
-      "moduleResolution": "node",
-      "resolveJsonModule": true,
-      "isolatedModules": true,
-      "jsx": "react-jsx"
-    }
-  }
+  "compilerOptions": {
+    "baseUrl": ".",
+    "lib": [
+      "dom",
+      "esnext"
+    ],
+    "skipLibCheck": true,
+    "target": "es5",
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "allowJs": false,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "noImplicitThis": false,
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    },
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx"
+  },
+  "extends": "expo/tsconfig.base",
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    ".expo/types/**/*.ts",
+    "expo-env.d.ts",
+    "nativewind-env.d.ts"
+  ]
+}
